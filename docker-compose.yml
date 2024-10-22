@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  flask:
+    build:
+      context: ./app-flask
+      dockerfile: Dockerfile
+    container_name: app-flask
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+  validacao:
+      build:
+        context: ./app-validacao
+        dockerfile: Dockerfile
+      container_name: app-validacao
+      ports:
+        - "5001:5001"
+      networks:
+        - app-network
+
+networks:
+  app-network:
+    driver: bridge
